@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monu Kumawat | 3D Creative Portfolio</title>
+    
+    <!-- SEO Optimization -->
+    <meta name="description" content="Portfolio of Monu Kumawat, B.Tech Computer Science Engineering Student (2023–2027). Specializing in Web Development, Graphic Designing, Photography, and Digital Marketing.">
+    <meta name="keywords" content="Monu Kumawat, Web Developer, Graphic Designer, Photographer, Digital Marketer, CSE Student, 3D Portfolio">
+    <meta name="author" content="Monu Kumawat">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Monu Kumawat | Creative 3D Portfolio">
+    <meta property="og:description" content="Explore the creative developer portfolio of Monu Kumawat. Web development, design, and photography.">
+    <meta property="og:image" content="profile.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor-dot" id="cursor-dot"></div>
+    <div class="custom-cursor-ring" id="cursor-ring"></div>
+
+    <!-- Page Loader -->
+    <div id="loader" class="loader-container">
+        <div class="loader-content">
+            <h1 class="loader-logo">MONU<span class="dot">.</span></h1>
+            <div class="loader-bar-bg">
+                <div class="loader-bar" id="loader-bar"></div>
+            </div>
+            <div class="loader-percentage" id="loader-percentage">0%</div>
+        </div>
+    </div>
+
+    <!-- Background Canvas for Three.js particles -->
+    <canvas id="three-bg"></canvas>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar" id="scroll-progress"></div>
+    </div>
+
+    <!-- Sticky Header / Navigation -->
+    <header class="main-header" id="header">
+        <div class="header-container">
+            <a href="#home" class="logo" id="header-logo">
+                MONU<span class="dot">.</span>
+            </a>
+            
+            <nav class="nav-menu" id="nav-menu" aria-label="Main Navigation">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                    <li><a href="#education" class="nav-link">Education</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <!-- Light/Dark Mode Switcher -->
+                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Light/Dark Theme">
+                    <i class="fa-solid fa-moon moon-icon"></i>
+                    <i class="fa-solid fa-sun sun-icon"></i>
+                </button>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-nav-toggle" id="menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-menu" id="mobile-menu-drawer">
+        <ul class="mobile-nav-list">
+            <li><a href="#home" class="mobile-nav-link">Home</a></li>
+            <li><a href="#about" class="mobile-nav-link">About</a></li>
+            <li><a href="#skills" class="mobile-nav-link">Skills</a></li>
+            <li><a href="#services" class="mobile-nav-link">Services</a></li>
+            <li><a href="#portfolio" class="mobile-nav-link">Portfolio</a></li>
+            <li><a href="#education" class="mobile-nav-link">Education</a></li>
+            <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content Area -->
+    <main>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-container">
+                <div class="hero-info" id="hero-info-panel">
+                    <span class="hero-badge">B.Tech CSE Student & Designer</span>
+                    <h1 class="hero-title">
+                        Hi, I'm <br>
+                        <span class="gradient-text font-accent">Monu Kumawat</span>
+                    </h1>
+                    <h2 class="hero-subtitle">
+                        I am a <span class="typing-text-wrapper"><span id="typing-element"></span><span class="cursor">|</span></span>
+                    </h2>
+                    <p class="hero-description">
+                        Building premium digital experiences through standard code, creative graphic designing, and artistic photography. Bridging technology and creativity.
+                    </p>
+                    <div class="hero-ctas">
+                        <a href="#portfolio" class="btn btn-primary" id="cta-view-portfolio">
+                            <span>View Portfolio</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary" id="cta-contact-me">
+                            <span>Contact Me</span>
+                        </a>
+                        <a href="resume.pdf" class="btn btn-tertiary" id="cta-download-resume" download="Monu_Kumawat_Resume.pdf">
+                            <i class="fa-solid fa-download"></i>
+                            <span>Download Resume</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-visual" id="hero-visual-panel">
+                    <!-- Profile Card with Dynamic Color Adaptability -->
+                    <div class="profile-card-3d" id="profile-card">
+                        <div class="profile-card-inner">
+                            <div class="profile-image-wrapper">
+                                <img src="profile.png" alt="Monu Kumawat" id="profile-img" crossOrigin="anonymous">
+                                <div class="image-overlay"></div>
+                            </div>
+                            
+                            <!-- Dynamic Color Extraction Upload Trigger -->
+                            <div class="upload-trigger-container" title="Upload a photo to automatically adapt the website's theme!">
+                                <label for="image-upload" class="upload-label">
+                                    <i class="fa-solid fa-camera"></i>
+                                    <span>Adapt Theme</span>
+                                </label>
+                                <input type="file" id="image-upload" accept="image/*" style="display: none;">
+                            </div>
+
+                            <div class="profile-card-footer">
+                                <h3 class="profile-name">Monu Kumawat</h3>
+                                <p class="profile-title">B.Tech CSE (2023 - 2027)</p>
+                                <div class="profile-socials">
+                                    <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                                    <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                                    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mouse Scroll Indicator -->
+            <div class="scroll-indicator">
+                <a href="#about" aria-label="Scroll to About Me">
+                    <span class="mouse">
+                        <span class="wheel"></span>
+                    </span>
+                    <span class="scroll-text">Scroll Down</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="about-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="subtitle">Get To Know Me</span>
+                    <h2 class="title">About <span class="gradient-text">Me</span></h2>
+                    <div class="header-line"></div>
+                </div>
+                
+                <div class="about-grid">
+                    <div class="about-text-content">
+                        <p class="lead-text">
+                            "I am a B.Tech Computer Science Engineering student (2023–2027) passionate about Web Development, Graphic Designing, Photography, and Digital Marketing."
+                        </p>
+                        <p class="body-text">
+                            I enjoy creating modern digital experiences and continuously improving my technical and creative skills. By combining logical programming structures with an eye for visual aesthetics, I bring ideas to life across web platforms, design canvases, and camera lenses.
+                        </p>
+                        <div class="personal-details">
+                            <div class="detail-item">
+                                <span class="detail-label"><i class="fa-solid fa-location-dot"></i> Location:</span>
+                                <span class="detail-value">India</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label"><i class="fa-solid fa-envelope"></i> Email:</span>
+                                <span class="detail-value"><a href="mailto:monukumawat2023@gmail.com">monukumawat2023@gmail.com</a></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label"><i class="fa-solid fa-phone"></i> Phone:</span>
+                                <span class="detail-value"><a href="tel:+919772566884">+91 9772566884</a></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Statistics Cards -->
+                    <div class="about-stats-grid">
+                        <div class="stat-card glass-panel" data-speed="1.2">
+                            <div class="stat-icon-wrapper">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                            <h3 class="stat-number" data-target="25">0</h3>
+                            <p class="stat-label">Projects Completed</p>
+                        </div>
+
+                        <div class="stat-card glass-panel" data-speed="1.5">
+                            <div class="stat-icon-wrapper">
+                                <i class="fa-solid fa-camera"></i>
+                            </div>
+                            <h3 class="stat-number" data-target="50">0</h3>
+                            <p class="stat-label">Photography Sessions</p>
+                        </div>
+
+                        <div class="stat-card glass-panel" data-speed="1">
+                            <div class="stat-icon-wrapper">
+                                <i class="fa-solid fa-palette"></i>
+                            </div>
+                            <h3 class="stat-number" data-target="100">0</h3>
+                            <p class="stat-label">Designs Rendered</p>
+                        </div>
+
+                        <div class="stat-card glass-panel" data-speed="1.4">
+                            <div class="stat-icon-wrapper">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <h3 class="stat-number" data-target="15">0</h3>
+                            <p class="stat-label">Marketing Campaigns</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="subtitle">My Abilities</span>
+                    <h2 class="title">Technical & Creative <span class="gradient-text">Skills</span></h2>
+                    <div class="header-line"></div>
+                </div>
+
+                <div class="skills-grid">
+                    <!-- Web Development Card -->
+                    <div class="skill-category-card glass-panel tilt-card" id="skill-webdev">
+                        <div class="card-glow"></div>
+                        <div class="skill-header">
+                            <i class="fa-solid fa-laptop-code category-icon"></i>
+                            <h3>Web Development</h3>
+                        </div>
+                        <ul class="skill-list">
+                            <li>
+                                <div class="skill-info"><span>HTML5</span><span class="percentage">95%</span></div>
+                                <div class="skill-progress-bg"><div class="skill-progress-fill" data-progress="95%"></div></div>
+                            </li>
+                            <li>
+                                <div class="skill-info"><span>CSS3</span><span class="percentage">90%</span></div>
+                                <div class="skill-progress-bg"><div class="skill-progress-fill" data-progress="90%"></div></div>
+                            </li>
+                            <li>
+                                <div class="skill-info"><span>JavaScript</span><span class="percentage">85%</span></div>
+                                <div class="skill-progress-bg"><div class="skill-progress-fill" data-progress="85%"></div></div>
+                            </li>
+                            <li>
+                                <div class="skill-info"><span>Responsive Web Design</span><span class="percentage">95%</span></div>
+                                <div class="skill-progress-bg"><div class="skill-progress-fill" data-progress="95%"></div></div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Programming & Problem Solving Card -->
+                    <div class="skill-category-card glass-panel tilt-card" id="skill-programming">
+                        <div class="card-glow"></div>
+                        <div class="skill-header">
+                            <i class="fa-solid fa-brain category-icon"></i>
+                            <h3>Programming & DSA</h3>
+                        </div>
+                        <ul class="skill-list">
+                            <li>
+                                <div class="skill-info"><span>DSA with Java</span><span class="percentage">85%</span></div>
+                                <div class="skill-progress-bg"><div class="skill-progress-fill" data-progress="85%"></div></div>
+                            </li>
+                            <li>
+                                <div class="skill-info"><span>C Programming</span><span class="percentage">80%</span></div>
+                                <div class="skill-progress-bg"><div class="skill-progress-fill" data-progress="80%"></div></div>
+                            </li>
+                            <li>
+                                <div class="skill-info"><span>Object-Oriented Programming (OOP)</span><span class="percentage">85%</span></div>
+                                <div class="skill-progress-bg"><div class="skill-progress-fill" data-progress="85%"></div></div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Graphic Design Card -->
+                    <div class="skill-category-card glass-panel tilt-card" id="skill-design">
+                        <div class="card-glow"></div>
+                        <div class="skill-header">
+                            <i class="fa-solid fa-palette category-icon"></i>
+                            <h3>Graphic Design</h3>
+                        </div>
+                        <ul class="skill-list">
+                            <li>
+                                <div class="skill-info"><span>Logo Design</span><span class="percentage">90%</span></div>
+                                <div class="skill-progress-bg"><div class="skill-progress-fill" data-progress="90%"></div></div>
+                            </li>
+                            <li>
+                                <div class="skill-info"><span>Social Media Creatives</span><span class="percentage">95%</span></div>
+                                <div class="skill-progress-bg"><div class="skill-progress-fill" data-progress="95%"></div></div>
+                            </li>
+                            <li>
+                                <div class="skill-info"><span>Branding & Visual Content</span><span class="percentage">90%</span></div>
+                                <div class="skill-progress-bg"><div class="skill-progress-fill" data-progress="90%"></div></div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Photography Card -->
+                    <div class="skill-category-card glass-panel tilt-card" id="skill-photography">
+                        <div class="card-glow"></div>
+                        <div class="skill-header">
+                            <i class="fa-solid fa-camera category-icon"></i>
+                            <h3>Photography</h3>
+                        </div>
+                        <ul class="skill-list">
+                            <li>
+                                <div class="skill-info"><span>Candid Photography Expert</span><span class="percentage">95%</span></div>
+                                <div class="skill-progress-bg"><div class="skill-progress-fill" data-progress="95%"></div></div>
+                            </li>
+                            <li>
+                                <div class="skill-info"><span>Portrait Photography</span><span class="percentage">90%</span></div>
+                                <div class="skill-progress-bg"><div class="skill-progress-fill" data-progress="90%"></div></div>
+                            </li>
+                            <li>
+                                <div class="skill-info"><span>Event Photography</span><span class="percentage">85%</span></div>
+                                <div class="skill-progress-bg"><div class="skill-progress-fill" data-progress="85%"></div></div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Video Editing Card -->
+                    <div class="skill-category-card glass-panel tilt-card" id="skill-video">
+                        <div class="card-glow"></div>
+                        <div class="skill-header">
+                            <i class="fa-solid fa-clapperboard category-icon"></i>
+                            <h3>Video Editing</h3>
+                        </div>
+                        <ul class="skill-list">
+                            <li>
+                                <div class="skill-info"><span>Reels & Short Video Editing</span><span class="percentage">90%</span></div>
+                                <div class="skill-progress-bg"><div class="skill-progress-fill" data-progress="90%"></div></div>
+                            </li>
+                            <li>
+                                <div class="skill-info"><span>Cinematic Video Editing</span><span class="percentage">85%</span></div>
+                                <div class="skill-progress-bg"><div class="skill-progress-fill" data-progress="85%"></div></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="subtitle">What I Offer</span>
+                    <h2 class="title">My Creative <span class="gradient-text">Services</span></h2>
+                    <div class="header-line"></div>
+                </div>
+
+                <div class="services-grid">
+                    <!-- Service 1 -->
+                    <div class="service-card glass-panel">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-code"></i>
+                            <div class="service-icon-bg"></div>
+                        </div>
+                        <h3 class="service-title">Web Development</h3>
+                        <p class="service-desc">I create modern, responsive, and user-friendly websites using HTML, CSS, and JavaScript. From personal portfolios to business landing pages, I build fast and visually appealing websites.</p>
+                        <span class="service-learn-more">Learn more / Book <i class="fa-solid fa-chevron-right"></i></span>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="service-card glass-panel">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-laptop-code"></i>
+                            <div class="service-icon-bg"></div>
+                        </div>
+                        <h3 class="service-title">Programming & Problem Solving</h3>
+                        <p class="service-desc">I provide solutions in C Programming and Data Structures & Algorithms (Java), helping with coding projects, algorithm optimization, and logical problem-solving.</p>
+                        <span class="service-learn-more">Learn more / Book <i class="fa-solid fa-chevron-right"></i></span>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="service-card glass-panel">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-palette"></i>
+                            <div class="service-icon-bg"></div>
+                        </div>
+                        <h3 class="service-title">Graphic Design</h3>
+                        <p class="service-desc">I design professional logos, social media posts, banners, flyers, and branding materials that help businesses establish a strong visual identity.</p>
+                        <span class="service-learn-more">Learn more / Book <i class="fa-solid fa-chevron-right"></i></span>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="service-card glass-panel">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-camera"></i>
+                            <div class="service-icon-bg"></div>
+                        </div>
+                        <h3 class="service-title">Candid Photography</h3>
+                        <p class="service-desc">I specialize in capturing natural and memorable moments through candid photography for events, portraits, pre-wedding shoots, and personal projects.</p>
+                        <span class="service-learn-more">Learn more / Book <i class="fa-solid fa-chevron-right"></i></span>
+                    </div>
+
+                    <!-- Service 5 -->
+                    <div class="service-card glass-panel">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-clapperboard"></i>
+                            <div class="service-icon-bg"></div>
+                        </div>
+                        <h3 class="service-title">Video Editing</h3>
+                        <p class="service-desc">I create engaging videos with smooth transitions, color grading, cinematic effects, and professional editing for reels, YouTube content, and promotional videos.</p>
+                        <span class="service-learn-more">Learn more / Book <i class="fa-solid fa-chevron-right"></i></span>
+                    </div>
+
+                    <!-- Service 6 -->
+                    <div class="service-card glass-panel">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-rocket"></i>
+                            <div class="service-icon-bg"></div>
+                        </div>
+                        <h3 class="service-title">Creative Digital Solutions</h3>
+                        <p class="service-desc">By combining web development, graphic design, photography, and video editing, I help individuals and businesses build a strong and impactful digital presence.</p>
+                        <span class="service-learn-more">Learn more / Book <i class="fa-solid fa-chevron-right"></i></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Showcase & Photography Gallery -->
+        <section id="portfolio" class="portfolio-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="subtitle">Showcase</span>
+                    <h2 class="title">My Creative <span class="gradient-text">Portfolio</span></h2>
+                    <div class="header-line"></div>
+                </div>
+
+                <!-- Filters -->
+                <div class="portfolio-filters" role="group" aria-label="Portfolio Filters">
+                    <button class="filter-btn active" data-filter="all">All Works</button>
+                    <button class="filter-btn" data-filter="web">Web Development</button>
+                    <button class="filter-btn" data-filter="design">Graphic Design</button>
+                    <button class="filter-btn" data-filter="photo">Photography</button>
+                </div>
+
+                <!-- Gallery Grid -->
+                <div class="portfolio-grid" id="portfolio-grid">
+                    <!-- Project 1 (Web) -->
+                    <div class="portfolio-item web" data-title="Modern E-Commerce Store" data-desc="Fully responsive online shopping hub featuring rich animations, search capabilities, and a smooth checkout loop.">
+                        <div class="portfolio-media glass-panel">
+                            <img src="assets/web_project1.png" alt="E-Commerce Platform" class="portfolio-img">
+                            <div class="portfolio-info-overlay">
+                                <span class="item-category">Web Development</span>
+                                <h3 class="item-title">E-Commerce Platform</h3>
+                                <div class="item-actions">
+                                    <button class="lightbox-trigger" aria-label="Zoom Image"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                                    <a href="#" target="_blank" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 (Design) -->
+                    <div class="portfolio-item design" data-title="Brand Identity System" data-desc="Complete corporate logo, typography kit, assets, and design system templates formulated for a tech agency.">
+                        <div class="portfolio-media glass-panel">
+                            <img src="assets/design_project1.png" alt="Corporate Branding" class="portfolio-img">
+                            <div class="portfolio-info-overlay">
+                                <span class="item-category">Graphic Design</span>
+                                <h3 class="item-title">Corporate Branding</h3>
+                                <div class="item-actions">
+                                    <button class="lightbox-trigger" aria-label="Zoom Image"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 (Photo) -->
+                    <div class="portfolio-item photo" data-title="Cinematic Golden Hour" data-desc="High dynamic range portrait photography exploring lighting controls, grading, and shadow balance.">
+                        <div class="portfolio-media glass-panel">
+                            <img src="assets/photo_project1.png" alt="Golden Hour Portrait" class="portfolio-img">
+                            <div class="portfolio-info-overlay">
+                                <span class="item-category">Photography</span>
+                                <h3 class="item-title">Golden Hour Portrait</h3>
+                                <div class="item-actions">
+                                    <button class="lightbox-trigger" aria-label="Zoom Image"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 (Web) -->
+                    <div class="portfolio-item web" data-title="Collaborative Task Board" data-desc="A real-time workspace task manager implementing drag-and-drop mechanics, socket syncs, and database setups.">
+                        <div class="portfolio-media glass-panel">
+                            <img src="assets/web_project1.png" alt="Task Management App" class="portfolio-img" style="filter: hue-rotate(180deg) saturate(1.2);">
+                            <div class="portfolio-info-overlay">
+                                <span class="item-category">Web Development</span>
+                                <h3 class="item-title">Task Management App</h3>
+                                <div class="item-actions">
+                                    <button class="lightbox-trigger" aria-label="Zoom Image"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                                    <a href="#" target="_blank" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 5 (Photo) -->
+                    <div class="portfolio-item photo" data-title="Street Photography Narrative" data-desc="A visual photo series looking at municipal architecture, urban lights, and motion blurs in India.">
+                        <div class="portfolio-media glass-panel">
+                            <img src="assets/photo_project1.png" alt="Urban Motion Series" class="portfolio-img" style="filter: saturate(1.8) contrast(1.1) hue-rotate(90deg);">
+                            <div class="portfolio-info-overlay">
+                                <span class="item-category">Photography</span>
+                                <h3 class="item-title">Urban Motion Series</h3>
+                                <div class="item-actions">
+                                    <button class="lightbox-trigger" aria-label="Zoom Image"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 6 (Design) -->
+                    <div class="portfolio-item design" data-title="Creative Poster Campaign" data-desc="A series of promotional layouts and aesthetic brochures created for a college cultural festival.">
+                        <div class="portfolio-media glass-panel">
+                            <img src="assets/design_project1.png" alt="Festival Creatives" class="portfolio-img" style="filter: hue-rotate(120deg);">
+                            <div class="portfolio-info-overlay">
+                                <span class="item-category">Graphic Design</span>
+                                <h3 class="item-title">Festival Creatives</h3>
+                                <div class="item-actions">
+                                    <button class="lightbox-trigger" aria-label="Zoom Image"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="education-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="subtitle">My Journey</span>
+                    <h2 class="title">Education <span class="gradient-text">& Milestones</span></h2>
+                    <div class="header-line"></div>
+                </div>
+
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+
+                    <!-- Timeline Item 1 -->
+                    <div class="timeline-item left">
+                        <div class="timeline-marker">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </div>
+                        <div class="timeline-content glass-panel">
+                            <span class="timeline-date">2023 - 2027</span>
+                            <h3>Bachelor of Technology</h3>
+                            <h4 class="timeline-inst">Computer Science & Engineering</h4>
+                            <p class="timeline-desc">
+                                Pursuing an in-depth undergraduate curriculum focused on software design, algorithms, web architectures, databases, and digital system configurations. Actively applying CS theories to hands-on web projects.
+                            </p>
+                            <span class="timeline-badge">Ongoing Studies</span>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 2 -->
+                    <div class="timeline-item right">
+                        <div class="timeline-marker">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <div class="timeline-content glass-panel">
+                            <span class="timeline-date">2024</span>
+                            <h3>Web Dev Certification</h3>
+                            <h4 class="timeline-inst">Self-Guided & Academics</h4>
+                            <p class="timeline-desc">
+                                Completed advanced tracks in Frontend Frameworks (React.js), responsive layout integrations, and modular application deployments. Built interactive dynamic dashboards.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 3 -->
+                    <div class="timeline-item left">
+                        <div class="timeline-marker">
+                            <i class="fa-solid fa-palette"></i>
+                        </div>
+                        <div class="timeline-content glass-panel">
+                            <span class="timeline-date">2023</span>
+                            <h3>Creative Visuals Track</h3>
+                            <h4 class="timeline-inst">Design & Framing</h4>
+                            <p class="timeline-desc">
+                                Standardized core aesthetics, color spacing models, Lightroom grading, and asset mapping using Figma and Photoshop to support brand identity projects.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="subtitle">Let's Connect</span>
+                    <h2 class="title">Get In <span class="gradient-text">Touch</span></h2>
+                    <div class="header-line"></div>
+                </div>
+
+                <div class="contact-grid">
+                    <!-- Contact Cards -->
+                    <div class="contact-info-panel">
+                        <div class="contact-card-glass glass-panel">
+                            <div class="icon-box"><i class="fa-solid fa-phone"></i></div>
+                            <div class="card-details">
+                                <h3>Call Me</h3>
+                                <p><a href="tel:+919772566884">+91 9772566884</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-card-glass glass-panel">
+                            <div class="icon-box"><i class="fa-solid fa-envelope"></i></div>
+                            <div class="card-details">
+                                <h3>Email Me</h3>
+                                <p><a href="mailto:monukumawat2023@gmail.com">monukumawat2023@gmail.com</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-card-glass glass-panel">
+                            <div class="icon-box"><i class="fa-solid fa-location-dot"></i></div>
+                            <div class="card-details">
+                                <h3>Location</h3>
+                                <p>India</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="contact-form-panel glass-panel">
+                        <form id="contact-form" class="contact-form" novalidate>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Your Name</label>
+                                    <div class="input-wrapper">
+                                        <i class="fa-regular fa-user input-icon"></i>
+                                        <input type="text" id="name" name="from_name" placeholder="John Doe" required>
+                                    </div>
+                                    <span class="error-msg" id="name-error">Please enter your name</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Your Email</label>
+                                    <div class="input-wrapper">
+                                        <i class="fa-regular fa-envelope input-icon"></i>
+                                        <input type="email" id="email" name="reply_to" placeholder="john@example.com" required>
+                                    </div>
+                                    <span class="error-msg" id="email-error">Please enter a valid email</span>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <div class="input-wrapper">
+                                        <i class="fa-solid fa-phone input-icon"></i>
+                                        <input type="tel" id="phone" name="phone_number" placeholder="+91 1234567890">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject">Subject</label>
+                                    <div class="input-wrapper">
+                                        <i class="fa-regular fa-bookmark input-icon"></i>
+                                        <input type="text" id="subject" name="subject" placeholder="Project Inquiry" required>
+                                    </div>
+                                    <span class="error-msg" id="subject-error">Please enter a subject</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="message">Your Message</label>
+                                <div class="input-wrapper text-area-wrapper">
+                                    <i class="fa-regular fa-comment-dots input-icon"></i>
+                                    <textarea id="message" name="message" rows="5" placeholder="Let's build something amazing together..." required></textarea>
+                                </div>
+                                <span class="error-msg" id="message-error">Please enter your message</span>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary form-submit-btn" id="submit-btn">
+                                <span class="btn-text">Send Message</span>
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating WhatsApp Widget -->
+    <a href="https://wa.me/919772566884" class="whatsapp-floating-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">Chat with Monu</span>
+    </a>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal" class="lightbox-container" aria-hidden="true" role="dialog">
+        <button class="lightbox-close" id="lightbox-close" aria-label="Close modal">&times;</button>
+        <div class="lightbox-modal-content">
+            <div class="lightbox-media-container" id="lightbox-media">
+                <!-- Large preview content will be loaded here dynamically -->
+            </div>
+            <div class="lightbox-caption">
+                <h3 id="lightbox-title"></h3>
+                <p id="lightbox-desc"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Details Modal -->
+    <div id="service-modal" class="lightbox-container" aria-hidden="true" role="dialog">
+        <button class="lightbox-close" id="service-modal-close" aria-label="Close modal">&times;</button>
+        <div class="lightbox-modal-content glass-panel" style="padding: 40px; text-align: left; max-width: 600px; width: 90%; background: var(--bg-surface-opaque); border-radius: var(--border-radius-md);">
+            <div class="service-modal-header" style="display: flex; align-items: center; gap: 20px; margin-bottom: 24px;">
+                <div id="service-modal-icon" class="service-icon-box" style="margin-bottom: 0; width: 56px; height: 56px; flex-shrink: 0; font-size: 1.5rem;"></div>
+                <h3 id="service-modal-title" style="font-size: 1.8rem; font-weight: 700; margin: 0; font-family: var(--font-heading);"></h3>
+            </div>
+            <div class="service-modal-body" style="margin-bottom: 32px;">
+                <p id="service-modal-desc" style="font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 24px; line-height: 1.6;"></p>
+                <h4 style="color: var(--text-primary); margin-bottom: 12px; font-weight: 700; font-family: var(--font-heading);">What's Included:</h4>
+                <ul id="service-modal-features" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; list-style: none; margin-bottom: 24px; padding: 0;"></ul>
+                <h4 style="color: var(--text-primary); margin-bottom: 12px; font-weight: 700; font-family: var(--font-heading);">Technologies & Tools:</h4>
+                <div id="service-modal-tech" style="display: flex; flex-wrap: wrap; gap: 8px;"></div>
+            </div>
+            <button id="service-modal-cta" class="btn btn-primary" style="width: 100%;">Get Started / Propose Project</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="#home" class="logo">MONU<span class="dot">.</span></a>
+                <p>Engineering premium web platforms, visual graphic configurations, and narrative photography. Let's design the future.</p>
+                <div class="footer-socials">
+                    <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li><i class="fa-solid fa-envelope"></i> <a href="mailto:monukumawat2023@gmail.com">monukumawat2023@gmail.com</a></li>
+                    <li><i class="fa-solid fa-phone"></i> <a href="tel:+919772566884">+91 9772566884</a></li>
+                    <li><i class="fa-solid fa-location-dot"></i> India</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Monu Kumawat. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Vendor JavaScript Libraries (ThreeJS, GSAP, EmailJS) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <!-- Project Script -->
+    <script src="script.js"></script>
+</body>
+</html>
